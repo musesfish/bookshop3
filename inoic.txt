@@ -1,0 +1,62 @@
+1 cnpm i
+
+2 ionic serve
+
+http://localhost/github-pages/bookshop3/bookshop3/www/index.html
+
+http://localhost:8100/
+---------------------------------
+
+ionic是一款HTML5手机应用开发框架，可以说是AngularJS移动端解决方案，基于PhoneGap的编译平台，可以实现编译成各个平台的应用程序。一次开发，处处运行。
+
+1、安装ionic
+
+首先需要安装Node.js，安装成功后，在命令行中输入下面指令，安装ionic和cordova
+
+npm install -g cordova ionic
+可以通过查看版本号来测试是否安装成功，如果显示版本号即安装成功。
+
+windows：
+
+ionic -v
+mac：
+
+ionic -version
+2、创建ionic项目
+
+安装成功后，即可开始创建项目了
+
+ionic start ionic-app tabs
+其中tabs是ionic的模板，一共有3个选项，tabs，sidemenu，blank。
+
+www就是开发的项目源码
+
+platforms下面就是编译后的项目，下面应该有2个子目录android和ios，分别针对不同的平台
+
+resources是放资源图片的，例如图标、启动图片等
+
+3、打包成APP
+
+进入项目目录：
+
+cd ionic-app
+添加对应的框架：
+
+ionic platform add ios
+ionic platform add android
+编译：
+
+ionic build ios
+ionic build android
+模拟器中运行：
+
+ionic emulate ios
+ionic emulate android
+生成apk(此时生成的是未签名的apk):
+
+cordova build -release android
+打包ios只能在mac上进行，需要安装xcode。
+
+打包android可以在windows/mac上进行，需要预先安装jdk和android Studio。
+
+至此最精简的打包过程就结束了。

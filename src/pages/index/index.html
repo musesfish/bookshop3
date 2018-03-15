@@ -1,0 +1,74 @@
+<!--
+  Generated template for the IndexPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <!--头-->
+  <!--<ion-navbar>-->
+    <ion-grid>
+      <ion-row align-items-center justify-content-center 
+        style="padding-top:30px">
+        <ion-col col-1>
+          <ion-icon name="camera"></ion-icon>
+        </ion-col>
+        <ion-col col-10>
+          <ion-searchbar (keydown.enter)="jumptolist()" [(ngModel)]="val"></ion-searchbar>
+          <!--<ion-searchbar (ionInput)="jumptolist($event)"></ion-searchbar>-->
+        </ion-col>
+        <ion-col col-1>
+          <ion-icon name="chatboxes"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid> 
+  <!--</ion-navbar>-->
+
+</ion-header>
+
+
+<ion-content padding>
+
+   <!--轮播-->
+  <ion-slides pager autoplay=1000 loop=true speed=1000 style="height:50%"
+  *ngIf="carousel.length!=0">
+    <ion-slide *ngFor="let v of carousel">
+      <img [src]="'assets/'+v.img" alt="v.title">
+    </ion-slide>
+  </ion-slides>
+
+  <h6>新货上市</h6>
+
+  <!--滚动区-->
+  <ion-scroll style="height:200px;white-space:nowrap;margin-top:-20px;" scrollX="true" 
+  *ngIf="newArrival.length!=0">
+      <ion-card *ngFor="let v of newArrival" style="display:inline-block;width:180px;height:180px;
+      text-align:center;padding-top:10px;">
+        <img [src]="'assets/'+v.pic" style="width:90px;margin:0 auto">
+        <ion-card-content>
+          <p style="font-size:10px">{{v.title}}</p>
+        </ion-card-content>
+      </ion-card>
+  </ion-scroll>
+
+  <h6>推荐商品</h6>
+
+  <!--缩略图表-->
+  <ion-list *ngIf="recommended.length!=0" style="padding-top:10px;">
+    <ion-item *ngFor="let v of recommended" text-wrap style="margin:10px 0">
+      <ion-thumbnail item-start>
+        <img [src]="'assets/'+v.md" [navPush]="mydetail" [navParams]="{bid:v.bid}"
+         style="cursor:pointer">
+      </ion-thumbnail>
+      <h3>{{v.title}}</h3>
+      <p style="line-height:16px;height:48px;overflow:hidden;text-overflow:ellipsis">
+        {{v.subtitle}}
+      </p>
+      <button ion-button item-end clear>
+        <ion-icon name="cart" color="dark"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

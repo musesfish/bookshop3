@@ -1,0 +1,87 @@
+<!--
+  Generated template for the CartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>购物车</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid *ngIf="view==1">
+    <ion-row style="text-align:center;">
+      <ion-col col-12><img src="assets/img/404/500.gif"></ion-col>
+  
+      <ion-col col-12><h5>您还未登录...</h5></ion-col>
+   
+      <ion-col col-12>
+        <button ion-button color="secondary" block [navPush]="login">去登陆</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="view==2">
+    <ion-row style="text-align:center;">
+      <ion-col col-12><img src="assets/img/404/500.gif"></ion-col>
+  
+      <ion-col col-12><h5>购物车是空的...</h5></ion-col>
+   
+      <ion-col col-12>
+        <button ion-button color="secondary" block (click)="jumptoindex()">逛逛去</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="view==3">
+    <ion-list>
+      <ion-row *ngFor="let v of list;let myindex=index">
+        <ion-col col-2 align-self-center>
+            <ion-item>
+              <ion-checkbox [checked]="isB" (click)="checksigle(myindex)"
+              [(ngModel)]="isBs[myindex]" style="position:relative;left:-4px;"></ion-checkbox>
+            </ion-item>
+        </ion-col>
+        <ion-col col-10>
+            <ion-item text-wrap>
+              <ion-thumbnail item-start>
+                <img [src]="'assets/'+v.md" alt=""
+                [navPush]="mydetail" [navParams]="{lid:v.lid}"
+                style="cursor:pointer">
+              </ion-thumbnail>
+              <p style="text-overflow:ellipsis;height:38px;">{{v.title}}</p>
+              <p style="color:red;">{{v.price}}</p>
+              <p>
+                <button ion-button clear color="dark" style="font-size:24px;font-weight:100"
+                 (click)="add(myindex,true)">-</button>  
+                <span style="position:relative;top:4px;">{{v.count}}</span>
+                <button ion-button clear color="dark" style="font-size:24px;font-weight:100"
+                 (click)="add(myindex,false)">+</button>  
+              </p>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-2>
+          <ion-item>
+            <ion-checkbox (click)="checkall()" style="position:relative
+            ;left:-4px;"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col col-7>
+          <p><span>全选</span> 合计￥{{money}}</p>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button block color="danger" 
+           [navPush]="orderConfirm">去结算</button>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </ion-grid>
+
+</ion-content>
